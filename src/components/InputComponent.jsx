@@ -14,6 +14,7 @@ const InputComponent = () => {
     if (todo) {
       setTodos(JSON.parse(todo));
     }
+   
   }, []);
 
   const handleInput = (event) => {
@@ -57,7 +58,12 @@ const InputComponent = () => {
       todo: editTodo.todo,
       isCompleted: editTodo.isCompleted,
     });
+    
   };
+  const noSearch = <div>
+      <img src="/no-search.gif" alt="no-serach" />
+      <p className="text-center">No todo found</p>
+    </div>
   return (
     <>
       <section className="w-full max-w-md mx-auto my-5 flex justify-center items-center px-2">
@@ -81,41 +87,45 @@ const InputComponent = () => {
       </section>
       <section>
         <ol className="w-full max-w-md mx-auto m-2 p-1 overflow-y-auto overflow-x-hidden text-red-500 max-h-[60vh]">
+        {todos.length === 0 && noSearch }
           {todos.map((todo, idx) => (
-            <li
-              className="flex justify-between items-center border-b-2 border-black m-2 p-1"
-              key={todo.id}
-            >
-              <input
-                type="checkbox"
-                checked={todo.isCompleted}
-                className="cursor-pointer w-5 h-4 accent-violet-500 rounded border-2 border-black focus:ring-2 focus:ring-violet-300 transition-all duration-150"
-                onChange={() => handleCheckbox(todo.id)}
-              />
-              <span
-                className={`flex-1 mx-2 text-wrap text-xs md:text-base ${
-                  todo.isCompleted ? "line-through" : ""
-                }`}
+            <>
+             
+              <li
+                className="flex justify-between items-center border-b-2 border-black m-2 p-1"
+                key={todo.id}
               >
-                {todo.todo === "" ? "Untitled" : todo.todo}
-              </span>
-              <span className="flex gap-1">
-                <button className="m-1 p-2 bg-white hover:bg-violet-100 rounded-xl cursor-pointer border-2 border-black transition-colors">
-                  <img
-                    src="/edit.gif"
-                    alt="edit"
-                    width={20}
-                    onClick={() => handleEdit(todo.id)}
-                  />
-                </button>
-                <button
-                  className="m-1 p-2 bg-white hover:bg-red-100 rounded-xl cursor-pointer border-2 border-black transition-colors"
-                  onClick={() => handleDelete(todo.id)}
+                <input
+                  type="checkbox"
+                  checked={todo.isCompleted}
+                  className="cursor-pointer w-5 h-4 accent-violet-500 rounded border-2 border-black focus:ring-2 focus:ring-violet-300 transition-all duration-150"
+                  onChange={() => handleCheckbox(todo.id)}
+                />
+                <span
+                  className={`flex-1 mx-2 text-wrap text-xs md:text-base ${
+                    todo.isCompleted ? "line-through" : ""
+                  }`}
                 >
-                  <img src="/bin.gif" alt="bin" width={20} />
-                </button>
-              </span>
-            </li>
+                  {todo.todo === "" ? "Untitled" : todo.todo}
+                </span>
+                <span className="flex gap-1">
+                  <button className="m-1 p-2 bg-white hover:bg-violet-100 rounded-xl cursor-pointer border-2 border-black transition-colors">
+                    <img
+                      src="/edit.gif"
+                      alt="edit"
+                      width={20}
+                      onClick={() => handleEdit(todo.id)}
+                    />
+                  </button>
+                  <button
+                    className="m-1 p-2 bg-white hover:bg-red-100 rounded-xl cursor-pointer border-2 border-black transition-colors"
+                    onClick={() => handleDelete(todo.id)}
+                  >
+                    <img src="/bin.gif" alt="bin" width={20} />
+                  </button>
+                </span>
+              </li>
+            </>
           ))}
         </ol>
       </section>
