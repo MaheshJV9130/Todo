@@ -2,9 +2,9 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <footer className='w-screen h-12 bg-black text-white'>
+    <footer className='w-screen h-fit bg-black text-white text-center text-xs'>
       <p>Made with 💖 Mahesh</p>
-      <a href=""></a>
+      <a href="https://github.com/MaheshJV9130/Todo">GitHub</a>
     </footer>
   )
 }
