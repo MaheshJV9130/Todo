@@ -69,7 +69,7 @@ const InputComponent = () => {
             value={inputValue.todo}
             className="h-11 w-full md:w-[70%] border-2 border-[#000] p-2 rounded-xl outline-0 text-black text-xs md:text-base"
             onChange={handleInput}
-            maxLength={20}
+            maxLength={100}
           />
           <button
             onClick={handleAdd}
